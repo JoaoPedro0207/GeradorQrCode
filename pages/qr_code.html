@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qr Code</title>
+    <link rel="stylesheet" href="../styles.css">
+<body>
+    <div class="container">
+        <p>Adicione a URL</p>
+        <input type="text" placeholder="URL" id="qrText">
+        <img src="" id="qrImage">
+        <button onclick="gerarQR()">Gerar QR CODE</button>
+        <p id="errorMsg" style="color: red; display: none;">Por favor, insira uma URL válida.</p>
+    </div>
+
+    <script>
+        let qrImage = document.getElementById("qrImage");
+        let qrText = document.getElementById("qrText");
+        let errorMsg = document.getElementById("errorMsg");
+
+        function gerarQR(){
+            if (qrText.value.trim() === "") {
+                errorMsg.style.display = "block";
+                qrImage.src = "";
+            } else {
+                errorMsg.style.display = "none";
+                qrImage.src = "https://quickchart.io/qr?text=" + encodeURIComponent(qrText.value);
+            }
+        }
+    </script>
+</body>
+</html>

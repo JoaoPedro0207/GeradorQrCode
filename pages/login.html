@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de Usuário</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login de Usuário</h2>
+        <input type="email" placeholder="Email" id="loginEmail">
+        <input type="password" placeholder="Senha" id="loginSenha">
+        <button onclick="login()">Login</button>
+        <p id="loginMsg" style="color: red; display: none;"></p>
+    </div>
+
+    <script>
+        function login() {
+            const loginEmail = document.getElementById("loginEmail").value;
+            const loginSenha = document.getElementById("loginSenha").value;
+
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+
+            if (storedUser) {
+                if (storedUser.email === loginEmail && storedUser.senha === loginSenha) {
+                    window.location.href = "qr_code.html";
+                } else {
+                    document.getElementById("loginMsg").innerText = "Email ou senha incorretos.";
+                    document.getElementById("loginMsg").style.display = "block";
+                }
+            } else {
+                document.getElementById("loginMsg").innerText = "Usuário não encontrado.";
+                document.getElementById("loginMsg").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
